@@ -1,22 +1,6 @@
-// File: scripts/wizzCore.js
-
-const chat = document.getElementById("chatContainer");
-
-function appendMessage(sender, text) {
-  const div = document.createElement("div");
-  div.classList.add("message", sender === "You" ? "user" : "wizz");
-  div.innerHTML = `<b>${sender}:</b> ${text}`;
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-async function askWizz() {
-  const input = document.getElementById("userInput");
-  const msg = input.value.trim();
-  if (!msg) return;
-
-  appendMessage("You", msg);
-  input.value = "";
+ // 🔁 TEMP FALLBACK — display mock reply immediately for testing
+  appendMessage("Wizz", `🧪 You said: "${msg}"`);
+  return;
 
   const response = checkTriggers(msg);
   if (response) {
@@ -84,6 +68,9 @@ function loadHistory() {
     appendMessage(sender, text);
   }
 }
+
+// 🧠 Debug: confirm script loaded
+console.log("✅ wizzCore.js loaded");
 
 // Expose to global
 window.askWizz = askWizz;
